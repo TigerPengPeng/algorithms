@@ -1,8 +1,5 @@
 package com.dlut.shingling;
 
-import com.dlut.shingling.util.AnalyzerUtil;
-
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -50,20 +47,5 @@ public class ShinglingAlgorithm {
     public static double getSimilarity(List<String> list1, List<String> list2) {
         return getSimilarity(list1.toArray(new String[]{}),
                 list2.toArray(new String[]{}));
-    }
-
-
-
-    public static void main(String[] args) throws IOException {
-
-        String str1 = "北京酒仙桥如家大酒店";
-        String str2 = "北京如家酒仙桥便捷大酒店";
-
-        List<String> list1 = AnalyzerUtil.analyzer(str1);
-        List<String> list2 = AnalyzerUtil.analyzer(str2);
-
-        double similarity = getSimilarity(list1, list2);
-        System.out.println(similarity);
-
     }
 }
