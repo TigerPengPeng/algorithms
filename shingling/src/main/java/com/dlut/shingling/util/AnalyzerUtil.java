@@ -1,4 +1,4 @@
-package com.dlut.shingling;
+package com.dlut.shingling.util;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -14,7 +14,13 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
  *
  */
 public class AnalyzerUtil {
-    public static List<String> Analyzer(String text) throws IOException {
+    /**
+     *
+     * @param text
+     * @return
+     * @throws IOException
+     */
+    public static List<String> analyzer(String text) throws IOException {
         List<String> resultList = new ArrayList<String>();
         //创建分词对象
         Analyzer anal = new IKAnalyzer(true);
@@ -30,14 +36,13 @@ public class AnalyzerUtil {
         anal.close();
 
         return resultList;
-
     }
 
     public static void main(String[] args) throws IOException {
-        String text = "黄鹏是一个程序员";
-        List<String> res = AnalyzerUtil.Analyzer(text);
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println(res.get(i));
+        String text = "北京酒仙桥如家便捷大酒店";
+        List<String> res = AnalyzerUtil.analyzer(text);
+        for (String item : res) {
+            System.out.println(item);
         }
     }
 }
