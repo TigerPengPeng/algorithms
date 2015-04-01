@@ -1,4 +1,4 @@
-
+package com.dlut.sorts.quick;
 
 public class QuickSort {
 

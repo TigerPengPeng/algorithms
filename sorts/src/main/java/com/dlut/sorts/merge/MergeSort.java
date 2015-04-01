@@ -1,3 +1,4 @@
+package com.dlut.sorts.merge;
 
 public class MergeSort {
 

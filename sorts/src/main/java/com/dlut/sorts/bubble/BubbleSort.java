@@ -1,4 +1,4 @@
-
+package com.dlut.sorts.bubble;
 
 public class BubbleSort {
 

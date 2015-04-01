@@ -1,4 +1,4 @@
-
+package com.dlut.sorts.insert;
 
 public class InsertSort {
 
