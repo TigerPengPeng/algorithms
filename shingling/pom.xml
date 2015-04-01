@@ -3,19 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>lru</artifactId>
+        <artifactId>sorts</artifactId>
         <groupId>com.algorithms</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../lru/pom.xml</relativePath>
+        <relativePath>../sorts/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>sorts</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>../shingling</module>
-    </modules>
+
+    <artifactId>shingling</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wltea.analyzer</groupId>
+            <artifactId>IKAnalyzer</artifactId>
+            <version>3.2.8</version>
+        </dependency>
+
+
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
