@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/algorithms.iml" filepath="$PROJECT_DIR$/.idea/algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kdtree/kdtree.iml" filepath="$PROJECT_DIR$/kdtree/kdtree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kdtree/lru.iml" filepath="$PROJECT_DIR$/kdtree/lru.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kdtree/shingling.iml" filepath="$PROJECT_DIR$/kdtree/shingling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kdtree/sorts.iml" filepath="$PROJECT_DIR$/kdtree/sorts.iml" />
     </modules>
   </component>
 </project>
