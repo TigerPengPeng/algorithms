@@ -26,12 +26,13 @@ public class KdDemo {
             kd.insert(D, new String("D"));
             kd.insert(E, new String("E"));
             kd.insert(F, new String("F"));
+            kd.insert(A, new String("P"));
         }
         catch (Exception e) {
             System.err.println(e);
         }
 
-        List<String> list = kd.nearest(T, 3);
+        List<String> list = kd.nearest(A, 3);
         System.out.println(list);
     }
 
