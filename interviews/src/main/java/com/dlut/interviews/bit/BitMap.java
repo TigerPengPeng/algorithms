@@ -40,10 +40,10 @@ public class BitMap {
      * @return
      */
     public int getIndex(int i) {
-        // equals i / UNIT
         if (i < 0) {
             return -((Math.abs(i) >> SHIFT) + 1);
         } else {
+            // equals i / UNIT
             return i >> SHIFT;
         }
     }
@@ -54,7 +54,7 @@ public class BitMap {
      * @return
      */
     public int getMod(int i) {
-        // equals i % UNIT
+        // equals abs(i) % UNIT
         return Math.abs(i) & MASK;
     }
 
