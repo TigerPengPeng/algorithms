@@ -9,7 +9,6 @@ import java.util.Map;
 /**
  * Created by ray on 15-4-7.
  * 使用位来存储int类型数据
- * 注意，BitMap中只能存储正整数和0，具体原因请参考“int在机器中是以补码的方式存储的”
  *
  */
 public class BitMap {
@@ -42,7 +41,11 @@ public class BitMap {
      */
     public int getIndex(int i) {
         // equals i / UNIT
-        return i >> SHIFT;
+        if (i < 0) {
+            return -((Math.abs(i) >> SHIFT) + 1);
+        } else {
+            return i >> SHIFT;
+        }
     }
 
     /**
@@ -52,7 +55,7 @@ public class BitMap {
      */
     public int getMod(int i) {
         // equals i % UNIT
-        return i & MASK;
+        return Math.abs(i) & MASK;
     }
 
     /**
@@ -76,9 +79,6 @@ public class BitMap {
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(index);
 //        int newValue = getContainerValue(index) | (i << mod);
-        if (i < 0) {
-            throw new RuntimeException("value of i must >= 0");
-        }
         container.put(getIndex(i),
                 getContainerValue(getIndex(i)) | (1 << getMod(i)));
     }
@@ -93,9 +93,6 @@ public class BitMap {
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
 
-        if (i < 0) {
-            return false;
-        }
         if ((getContainerValue(getIndex(i)) & (1 << (getMod(i)))) != 0) {
             return true;
         } else {
@@ -112,7 +109,7 @@ public class BitMap {
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
 //        int newValue = getContainerValue(getIndex(i)) & ~(1 << getMod(i));\
-        if (i < 0 | getContainerValue(getIndex(i)) == 0) {
+        if (getContainerValue(getIndex(i)) == 0) {
             return;
         }
         container.put(getIndex(i),
@@ -129,7 +126,11 @@ public class BitMap {
             int value = container.get(key);
             for (int i = 0; i < UNIT; i++) {
                 if (((1 << i) & value) != 0) {
-                    sortList.add(key * UNIT + i);
+                    if (key < 0) {
+                        sortList.add(-(Math.abs(key + 1) * UNIT + i));
+                    } else {
+                        sortList.add(key * UNIT + i);
+                    }
                 }
             }
         }
@@ -137,12 +138,11 @@ public class BitMap {
     }
 
     /**
-     * BitMap中只能存储正整数和0
-     * 原因为int在机器中是以补码的方式存储的
+     * BitMap测试main方法
      * @param args
      */
     public static void main(String[] args) {
-        int [] data={32,31,63,95,734,89,5,71,98,273,59,817,457,189,238,409,21,384};
+        int [] data={-1,-43,-90,32,31,63,95,734,89,5,71,98,273,59,817,457,189,238,409,21,384};
 
         BitMap bitMap = new BitMap();
 
@@ -152,9 +152,15 @@ public class BitMap {
         System.out.println(bitMap.exists(0));
         System.out.println(bitMap.exists(31));
         System.out.println(bitMap.exists(500));
+        System.out.println(bitMap.exists(-43));
+        System.out.println(bitMap.exists(-67));
 
         bitMap.remove(89);
         bitMap.remove(900);
+        bitMap.remove(-43);
+
+        System.out.println(bitMap.exists(-43));
+
 
         System.out.println(bitMap.sort());
     }
