@@ -1,5 +1,6 @@
 package com.dlut.interviews.bit;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 /**
  * Created by ray on 15-4-7.
  * 使用位来存储int类型数据
+ * 注意，BitMap中只能存储正整数和0，具体原因请参考“int在机器中是以补码的方式存储的”
  *
  */
 public class BitMap {
@@ -31,14 +33,14 @@ public class BitMap {
     /**
      * BitMap Container
      */
-    private static Map<Integer, Integer> container = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> container = new HashMap<Integer, Integer>();
 
     /**
      *
      * @param i
      * @return
      */
-    public static int getIndex(int i) {
+    public int getIndex(int i) {
         // equals i / UNIT
         return i >> SHIFT;
     }
@@ -48,7 +50,7 @@ public class BitMap {
      * @param i
      * @return
      */
-    public static int getMod(int i) {
+    public int getMod(int i) {
         // equals i % UNIT
         return i & MASK;
     }
@@ -58,7 +60,7 @@ public class BitMap {
      * @param index
      * @return
      */
-    public static int getContainerValue(int index) {
+    public int getContainerValue(int index) {
         if (!container.containsKey(index)) {
             return 0;
         }
@@ -69,7 +71,7 @@ public class BitMap {
      *
      * @param i
      */
-    public static void set(int i) {
+    public void set(int i) {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(index);
@@ -83,13 +85,12 @@ public class BitMap {
      * @param i
      * @return
      */
-    public static boolean exists(int i) {
+    public boolean exists(int i) {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
 
-        if ((getContainerValue(getIndex(i)) & (1 << (getMod(i)))) > 0
-                || (getContainerValue(getIndex(i)) & (1 << (getMod(i)))) == (1 << MASK)) {
+        if ((getContainerValue(getIndex(i)) & (1 << (getMod(i)))) != 0) {
             return true;
         } else {
             return false;
@@ -100,7 +101,7 @@ public class BitMap {
      *
      * @param i
      */
-    public static void remove(int i) {
+    public void remove(int i) {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
@@ -116,13 +117,12 @@ public class BitMap {
      *
      * @return
      */
-    public static List<Integer> sort() {
+    public List<Integer> sort() {
         List<Integer> sortList = new ArrayList<Integer>(container.size() * UNIT);
         for (Integer key : container.keySet()) {
             int value = container.get(key);
             for (int i = 0; i < UNIT; i++) {
-                if ((((1 << i) & value) > 0)
-                        || (((1 << i) & value) == (1 << MASK))) {
+                if (((1 << i) & value) != 0) {
                     sortList.add(key * UNIT + i);
                 }
             }
@@ -130,17 +130,25 @@ public class BitMap {
         return sortList;
     }
 
+    /**
+     * BitMap中只能存储正整数和0
+     * 原因为int在机器中是以补码的方式存储的
+     * @param args
+     */
     public static void main(String[] args) {
         int [] data={32,31,63,95,734,89,5,71,98,273,59,817,457,189,238,409,21,384};
+
+        BitMap bitMap = new BitMap();
+
         for (int i = 0; i < data.length; i++) {
-            set(data[i]);
+            bitMap.set(data[i]);
         }
-        System.out.println(exists(0));
-        System.out.println(exists(31));
-        System.out.println(exists(500));
+        System.out.println(bitMap.exists(0));
+        System.out.println(bitMap.exists(31));
+        System.out.println(bitMap.exists(500));
 
-        remove(89);
+        bitMap.remove(89);
 
-        System.out.println(sort());
+        System.out.println(bitMap.sort());
     }
 }

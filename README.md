@@ -4,6 +4,14 @@ basic algorithms demos
 @email:             huangpengssdut@126.com
 @date:              2015-04-07
 @更新内容:
+更新<算法面试题>工程， 更新BitMap类，将BitMap的方法改为非static
+1.更新注解，BitMap只能存储正整数和0,具体原因参考int在机器中是以补码的方式存储的
+
+
+@author:            peng.huang
+@email:             huangpengssdut@126.com
+@date:              2015-04-07
+@更新内容:
 更新<算法面试题>工程，添加BitMap类，使用位来存储int类型数据
 1. 一个int类型占32位，每一位存储一个int类型数据，那么一个int可以存储32个数据。并支持对数据的排序（类似与计数排序，不过占用的空间更小），时间复杂度为O(n)
 
