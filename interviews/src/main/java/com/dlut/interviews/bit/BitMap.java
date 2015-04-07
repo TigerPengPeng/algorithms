@@ -108,7 +108,7 @@ public class BitMap {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
-//        int newValue = getContainerValue(getIndex(i)) & ~(1 << getMod(i));\
+//        int newValue = getContainerValue(getIndex(i)) & ~(1 << getMod(i));
         if (getContainerValue(getIndex(i)) == 0) {
             return;
         }
@@ -142,26 +142,19 @@ public class BitMap {
      * @param args
      */
     public static void main(String[] args) {
-        int [] data={-1,-43,-90,32,31,63,95,734,89,5,71,98,273,59,817,457,189,238,409,21,384};
+        int[] data = {-1,-43,-90,32,31,63,95,734,89,5,71,98,273,59,817,457,189,238,409,21,384};
+        int[] temp = {89,78,90, 95,457};
 
         BitMap bitMap = new BitMap();
 
-        for (int i = 0; i < data.length; i++) {
-            bitMap.set(data[i]);
+        for (int item : data) {
+            bitMap.set(item);
         }
-        System.out.println(bitMap.exists(0));
-        System.out.println(bitMap.exists(31));
-        System.out.println(bitMap.exists(500));
-        System.out.println(bitMap.exists(-43));
-        System.out.println(bitMap.exists(-67));
-
-        bitMap.remove(89);
-        bitMap.remove(900);
-        bitMap.remove(-43);
-
-        System.out.println(bitMap.exists(-43));
-
-
+        for (int item : temp) {
+            if (bitMap.exists(item)) {
+                System.out.println(item);
+            }
+        }
         System.out.println(bitMap.sort());
     }
 }
