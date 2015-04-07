@@ -77,7 +77,7 @@ public class BitMap {
 //        int containerValue = getContainerValue(index);
 //        int newValue = getContainerValue(index) | (i << mod);
         if (i < 0) {
-            throw new RuntimeException("value i must >= 0");
+            return;
         }
         container.put(getIndex(i),
                 getContainerValue(getIndex(i)) | (1 << getMod(i)));
@@ -94,9 +94,8 @@ public class BitMap {
 //        int containerValue = getContainerValue(getIndex(i));
 
         if (i < 0) {
-            throw new RuntimeException("value i must >= 0");
+            return false;
         }
-
         if ((getContainerValue(getIndex(i)) & (1 << (getMod(i)))) != 0) {
             return true;
         } else {
@@ -112,12 +111,8 @@ public class BitMap {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
-//        int newValue = getContainerValue(getIndex(i)) & ~(1 << getMod(i));
-        if (i < 0) {
-            throw new RuntimeException("value i must >= 0");
-        }
-
-        if (getContainerValue(getIndex(i)) == 0) {
+//        int newValue = getContainerValue(getIndex(i)) & ~(1 << getMod(i));\
+        if (i < 0 | getContainerValue(getIndex(i)) == 0) {
             return;
         }
         container.put(getIndex(i),
