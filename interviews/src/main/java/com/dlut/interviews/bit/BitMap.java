@@ -77,7 +77,7 @@ public class BitMap {
 //        int containerValue = getContainerValue(index);
 //        int newValue = getContainerValue(index) | (i << mod);
         if (i < 0) {
-            return;
+            throw new RuntimeException("value of i must >= 0");
         }
         container.put(getIndex(i),
                 getContainerValue(getIndex(i)) | (1 << getMod(i)));
