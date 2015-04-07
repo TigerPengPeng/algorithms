@@ -100,7 +100,7 @@ public class BitMap {
      *
      * @param i
      */
-    public static void clear(int i) {
+    public static void remove(int i) {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
@@ -138,6 +138,8 @@ public class BitMap {
         System.out.println(exists(0));
         System.out.println(exists(31));
         System.out.println(exists(500));
+
+        remove(89);
 
         System.out.println(sort());
     }
