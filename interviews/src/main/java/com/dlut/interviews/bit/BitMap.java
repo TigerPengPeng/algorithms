@@ -2,7 +2,7 @@ package com.dlut.interviews.bit;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +33,7 @@ public class BitMap {
     /**
      * BitMap Container
      */
-    private Map<Integer, Integer> container = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> container = new TreeMap<Integer, Integer>();
 
     /**
      *
@@ -76,6 +76,9 @@ public class BitMap {
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(index);
 //        int newValue = getContainerValue(index) | (i << mod);
+        if (i < 0) {
+            throw new RuntimeException("value i must >= 0");
+        }
         container.put(getIndex(i),
                 getContainerValue(getIndex(i)) | (1 << getMod(i)));
     }
@@ -89,6 +92,10 @@ public class BitMap {
 //        int index = getIndex(i);
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
+
+        if (i < 0) {
+            throw new RuntimeException("value i must >= 0");
+        }
 
         if ((getContainerValue(getIndex(i)) & (1 << (getMod(i)))) != 0) {
             return true;
@@ -106,6 +113,10 @@ public class BitMap {
 //        int mod = getMod(i);
 //        int containerValue = getContainerValue(getIndex(i));
 //        int newValue = getContainerValue(getIndex(i)) & ~(1 << getMod(i));
+        if (i < 0) {
+            throw new RuntimeException("value i must >= 0");
+        }
+
         if (getContainerValue(getIndex(i)) == 0) {
             return;
         }
@@ -148,6 +159,7 @@ public class BitMap {
         System.out.println(bitMap.exists(500));
 
         bitMap.remove(89);
+        bitMap.remove(900);
 
         System.out.println(bitMap.sort());
     }
