@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by ray on 15-4-7.
  * 使用位来存储int类型数据
- *
+ * 由于位存储的性质，所以存储后的数据有去重的效果
  */
 public class BitMap {
 
@@ -142,7 +142,7 @@ public class BitMap {
      * @param args
      */
     public static void main(String[] args) {
-        int[] data = {-1,-43,-90,32,31,63,95,734,89,5,71,98,273,59,817,457,189,238,409,21,384};
+        int[] data = {-1,-43,-90,32,31,63,95,734,32,31,89,5,71,98,273,59,817,457,189,238,409,21,384};
         int[] temp = {89,78,90, 95,457};
 
         BitMap bitMap = new BitMap();

@@ -6,6 +6,7 @@ import com.dlut.sorts.counting.CoutingSort;
  * Created by ray on 15-4-8.
  * 简单的基数排序（基于计数排序）
  * 调用d次CoutingSort类中的digitCoutingSort方法，时间复杂度为O(d(n+k))a
+ * 由于使用计数排序作为辅助，所以基数排序只能排列非负整数
  */
 public class RadixSort {
 
