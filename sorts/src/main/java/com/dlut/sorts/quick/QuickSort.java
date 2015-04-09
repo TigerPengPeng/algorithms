@@ -29,23 +29,25 @@ public class QuickSort {
      }
 
     /**
-     * TODO 目前的partition算法是不支持选择key值的，key只能为A[high],保留key的形参是为了后期扩展
+     * key的选值只能是A[low]，若不是会出错。如果想自定义key=A[i]，也只能swap(A,low,i)，key=A[low]是不能改变的
      * @param A
      * @param low
      * @param high
      * @return
      */
      private static int partition(int[] A, int low, int high) {
-         int key = A[high];
-         int i = low - 1;
-         for (int j = low; j < high; j++) {
-             if (A[j] <= key) {
-                 i++;
-                 swap(A, i, j);
+         int key = A[low];
+         while (low < high) {
+             while (low < high && A[high] >= key) {
+                 high--;
              }
+             swap(A, low, high);
+             while (low < high && A[low] <= key) {
+                 low++;
+             }
+             swap(A, low, high);
          }
-         swap(A, i+1, high);
-         return i+1;
+         return low;
      }
 
 

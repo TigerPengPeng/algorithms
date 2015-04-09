@@ -24,15 +24,15 @@ public class OrderStatic {
      * @param <T>
      * @return
      */
-    public static <T extends Comparable> T select(T[] A, int i) {
+    public static <T extends Comparable> T middleSelect(T[] A, int i) {
         if (i <= 0) {
             throw new RuntimeException("value of i must > 0");
         }
-        return select(A, 0, A.length-1, i);
+        return middleSelect(A, 0, A.length-1, i);
     }
 
     /**
-     * TODO 非随机的第i个顺序量统计，需要更改partition算法,目前partition算法不支持选择key值
+     * 非随机的第i个顺序量统计
      * @param A
      * @param low
      * @param high
@@ -40,8 +40,36 @@ public class OrderStatic {
      * @param <T>
      * @return
      */
-    private static <T extends Comparable> T select(T[] A, int low, int high, int i) {
-        return null;
+    private static <T extends Comparable> T middleSelect(T[] A, int low, int high, int i) {
+        if (low == high) {
+            return A[low];
+        }
+        int q = middlePartition(A, low, high);
+        int k = q - low + 1;
+        if (i == k) {
+            return A[q];
+        } else if (i < k) {
+            return middleSelect(A, low, q-1, i);
+        } else {
+            return middleSelect(A, q+1, high, i-k);
+        }
+    }
+
+    /**
+     * 需要找到近似中位数的index，然后swap(A, low, midIndex)
+     * @param A
+     * @param low
+     * @param high
+     * @param <T>
+     * @return
+     */
+    public static <T extends Comparable> int middlePartition(T[] A, int low, int high) {
+        T middle = FindApproximateMiddle.findApproximateMiddle(A, low, high);
+        // 找到近似中位数的index
+        int index = FindApproximateMiddle.findApproximateMiddleIndex(A,  low, high, middle);
+        // 交换A[low] 和 A[index]
+        TemplateUtil.swap(A, low, index);
+        return randomizedPartition(A, low, high);
     }
 
     /**
@@ -71,7 +99,7 @@ public class OrderStatic {
         if (low == high) {
             return A[low];
         }
-        int q = partition(A, low, high);
+        int q = randomizedPartition(A, low, high);
         int k = q - low + 1;
         if (i == k) {
             return A[q];
@@ -84,36 +112,26 @@ public class OrderStatic {
 
 
     /**
-     *
+     * key的选值只能是A[low]，若不是会出错。如果想自定义key=A[i]，也只能swap(A,low,i)，key=A[low]是不能改变的
      * @param A
      * @param low
      * @param high
      * @param <T>
      * @return
      */
-    public static <T extends Comparable> int partition(T[] A, int low, int high) {
-        return partition(A, low, high, A[high]);
-    }
-
-    /**
-     * TODO 目前的partition算法是不支持选择key值的, 保留key的形参是为了后期扩展
-     * @param A
-     * @param low
-     * @param high
-     * @param key
-     * @param <T>
-     * @return
-     */
-    private static <T extends Comparable> int partition(T[] A, int low, int high, T key) {
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (TemplateUtil.compare(A[j], key) <= 0) {
-                i++;
-                TemplateUtil.swap(A, i, j);
+    public static <T extends Comparable> int randomizedPartition(T[] A, int low, int high) {
+        T key = A[low];
+        while (low < high) {
+            while (low < high && TemplateUtil.compare(A[high], key) >= 0) {
+                high--;
             }
+            TemplateUtil.swap(A, low, high);
+            while (low < high && TemplateUtil.compare(A[low], key) <=0 ) {
+                low++;
+            }
+            TemplateUtil.swap(A, low, high);
         }
-        TemplateUtil.swap(A, i+1, high);
-        return i+1;
+        return low;
     }
 
 
@@ -121,7 +139,7 @@ public class OrderStatic {
 
         Integer[] data = new Integer[]{22,1,65,122,6,2,55,22,66,33,5,9,22,65,79,90,0,101,120,22};
         for (int i = 1; i <= data.length; i++) {
-            Integer value = randomizedSelect(data, i);
+            Integer value = middleSelect(data, i);
             System.out.print(value + ",");
         }
 
