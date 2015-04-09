@@ -10,6 +10,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!-- import sort jar -->
+        <dependency>
+            <groupId>com.algorithms</groupId>
+            <artifactId>sorts</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
