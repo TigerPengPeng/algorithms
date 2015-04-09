@@ -9,38 +9,38 @@ public class QuickSort {
           sort(A, 0, A.length - 1);
      }
 
-     private static void sort(int[] A, int low, int hign) {
+     private static void sort(int[] A, int low, int high) {
 
           /*
-          if (low < hign) {
-               int key = partition(A, low, hign);
+          if (low < high) {
+               int key = partition(A, low, high);
                sort(A, low, key - 1);
-               sort(A, key + 1, hign);
+               sort(A, key + 1, high);
           }*/
 
           // this method is better
           int key = 0;
-          while (low < hign) {
-               key = partition(A, low, hign);
+          while (low < high) {
+               key = partition(A, low, high);
                sort(A, low, key - 1);
                low = key + 1;
           }
      }
 
-     private static int partition(int[] A, int low, int hign) {
+     private static int partition(int[] A, int low, int high) {
 
           int key = A[low];
 
-          while (low < hign) {
-               while (low < hign && A[hign] > key) {
-                    hign--;
+          while (low < high) {
+               while (low < high && A[high] > key) {
+                   high--;
                }
-               swap(A, low, hign);
+               swap(A, low, high);
 
-               while (low < hign && A[low] < key) {
+               while (low < high && A[low] < key) {
                     low++;
                }
-               swap(A, low, hign);
+               swap(A, low, high);
           }
           return low;
      }
