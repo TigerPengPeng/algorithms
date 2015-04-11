@@ -2,6 +2,14 @@ basic algorithms demos
 ========================================================
 @author:            peng.huang
 @email:             huangpengssdut@126.com
+@date:              2015-04-11
+@更新内容:
+更新<算法面试题>工程,添加两种找出第i个顺序统计数的算法
+1.使用randomizedPartition方法分割，每次partition算法的key值为A[low], 不对key做处理
+2.先将整体按照一定大小分割，找出每个模块的中位数，然后递归继续找出中位数。用该中位数的值作为每次partition算法的key
+
+@author:            peng.huang
+@email:             huangpengssdut@126.com
 @date:              2015-04-07
 @更新内容:
 更新<算法面试题>工程， 更新BitMap类，使BitMap类能存储负数
