@@ -1,0 +1,17 @@
+*.iml
+*.swp
+*.txt*.txt*.iml
+*/classes/
+.DS_Store
+.classpath
+.idea/
+.project
+.settings
+/target
+classes
+md5sum
+target/
+tmp/
+dump.rdb
+.mvn/
+mvnw.cmd
