@@ -16,4 +16,12 @@ public class CompareUtils {
     public static <T extends Comparable<? super T>> boolean biggerThan(T item1, T item2) {
         return item1.compareTo(item2) > 0;
     }
+
+    public static <T extends Comparable<? super T>> boolean equals(T item1, T item2) {
+        if (item1 == null && item2 == null) {
+            return true;
+        } else {
+            return item1.compareTo(item2) == 0;
+        }
+    }
 }
