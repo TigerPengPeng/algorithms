@@ -16,21 +16,17 @@ public class BinarySearch {
 
         int low = 0;
         int high = A.length - 1;
-        int mid = (low + high) / 2;
-
-        while (!CompareUtils.equals(target, A[mid])) {
+        while (low <= high) {
+            int mid = (low + high) / 2;
             if (CompareUtils.lessThan(target, A[mid])) {
-                high = mid;
+                high = mid - 1;
+            } else if (CompareUtils.biggerThan(target, A[mid])) {
+                low = mid + 1;
             } else {
-                low = mid;
-            }
-
-            mid = (low + high) / 2;
-            if (low == mid && !CompareUtils.equals(target, A[mid])) {
-                return -1;
+                return mid;
             }
         }
-        return mid;
+        return -1;
     }
 
     public static void main(String[] args) {
