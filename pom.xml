@@ -14,6 +14,7 @@
         <module>lru</module>
         <module>sorts</module>
         <module>interviews</module>
+        <module>thinking-in-java</module>
     </modules>
 
     <dependencies>
