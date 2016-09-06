@@ -1,7 +1,7 @@
 package com.dlut.interviews.order;
 
 import com.dlut.interviews.template.TemplateUtil;
-import com.dlut.sorts.insert.InsertSort;
+import com.dlut.sorts.InsertSort;
 
 /**
  * Created by ray on 15-4-9.
