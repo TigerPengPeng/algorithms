@@ -31,12 +31,12 @@ public class QuickSort {
         T key = A[low];
 
         while (low < high) {
-            while (low < high && CompareUtils.biggerThan(A[high], key)) {
+            while (low < high && CompareUtils.biggerThanOrEquals(A[high], key)) {
                 high--;
             }
             SwapArrayUtils.swap(A, high, low);
 
-            while (low < high && CompareUtils.lessThan(A[low], key)) {
+            while (low < high && CompareUtils.lessThanOrEquals(A[low], key)) {
                 low++;
             }
             SwapArrayUtils.swap(A, low, high);
@@ -45,7 +45,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        Integer[] A = new Integer[] {4, 1, 122, 6, 2, 55, 22};
+        Integer[] A = new Integer[] {4, 1, 55, 6, 122, 6, 2, 55, 22};
         sort(A);
         PrintArrayUtils.print(A);
     }
