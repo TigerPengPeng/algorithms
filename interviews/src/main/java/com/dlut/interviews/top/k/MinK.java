@@ -6,6 +6,7 @@
 package com.dlut.interviews.top.k;
 
 import com.dlut.sorts.PrintArrayUtils;
+import com.dlut.sorts.RandomArrUtil;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -16,13 +17,7 @@ import java.util.Random;
  */
 public class MinK {
     public static void main(String[] args) {
-        int[] arr = new int[30];
-
-        Random random = new Random();
-        for (int i = 0; i < 30; i++) {
-            arr[i] = random.nextInt(1000) + 1;
-        }
-
+        int[] arr = RandomArrUtil.randomIntArr(30);
         PrintArrayUtils.print(arr);
 
         for (int i = 0; i < 20; i++) {
