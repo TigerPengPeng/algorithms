@@ -1,17 +1,36 @@
 /*
  * Copyright (c) 2010-2015 meituan.com
  * All rights reserved.
- * 
+ *
  */
-package com.dlut.interviews.top;
+package com.dlut.interviews.top.k;
+
+import com.dlut.sorts.PrintArrayUtils;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author ray
- *         date 2019年02月22日
+ * date 2019年02月22日
  */
-public class TopK {
+public class MaxK {
+    public static void main(String[] args) {
+        int[] arr = new int[30];
+
+        Random random = new Random();
+        for (int i = 0; i < 30; i++) {
+            arr[i] = random.nextInt(1000) + 1;
+        }
+
+        PrintArrayUtils.print(arr);
+
+        for (int i = 0; i < 20; i++) {
+            System.out.println("max K=" + i);
+            int[] maxK = topK(arr, i);
+            PrintArrayUtils.print(maxK);
+        }
+    }
 
 
     public static int[] topK(int[] arr, int topK) {
@@ -123,6 +142,13 @@ public class TopK {
     }
 
 
+    /**
+     * 每次 partition 之后，key左边的值都比key小， key右边的值逗逼key大
+     * @param arr
+     * @param beginIndex
+     * @param endIndex
+     * @return
+     */
     private static int partition(int[] arr, int beginIndex, int endIndex) {
         int key = arr[beginIndex];
 
@@ -150,4 +176,5 @@ public class TopK {
         arr[i] = arr[k];
         arr[k] = temp;
     }
+
 }

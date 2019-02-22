@@ -9,13 +9,25 @@ package com.dlut.sorts;
  */
 public class PrintArrayUtils {
 
+    public static void print(int[] array) {
+        if (array == null) {
+            return;
+        }
+
+        for (int item : array) {
+            System.out.print(item + "\t");
+        }
+        System.out.println();
+    }
+
     public static <T> void print(T[] array) {
         if (array == null) {
             return;
         }
 
         for (T item : array) {
-            System.out.println(item);
+            System.out.print(item + "\t");
         }
+        System.out.println();
     }
 }
