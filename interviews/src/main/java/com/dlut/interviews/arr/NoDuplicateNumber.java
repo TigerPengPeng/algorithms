@@ -7,6 +7,8 @@ public class NoDuplicateNumber {
 
     /**
      * 一个数组只有一个数字出现了一次，其他数字都出现了两次，找到这个唯一出现过一次的数字
+     * 时间复杂度 O(n)
+     * 空间复杂度 O(1)
      *
      * @param arr
      * @return
@@ -30,6 +32,8 @@ public class NoDuplicateNumber {
 
     /**
      * 一个数组只有两个数字出现了一次，其他数字都出现了两次，找到这两个出现过一次的数字
+     * 时间复杂度 O(n)
+     * 空间复杂度 O(1)
      *
      * @param arr
      * @return

@@ -63,51 +63,14 @@ public class OrderStatic {
      * @param <T>
      * @return
      */
-    public static <T extends Comparable> int middlePartition(T[] A, int low, int high) {
+    private static <T extends Comparable> int middlePartition(T[] A, int low, int high) {
         T middle = FindApproximateMiddle.findApproximateMiddle(A, low, high);
         // 找到近似中位数的index
         int index = FindApproximateMiddle.findApproximateMiddleIndex(A,  low, high, middle);
+
         // 交换A[low] 和 A[index]
         TemplateUtil.swap(A, low, index);
         return randomizedPartition(A, low, high);
-    }
-
-    /**
-     *
-     * @param A
-     * @param i
-     * @param <T>
-     * @return
-     */
-    public static <T extends Comparable> T randomizedSelect(T[] A, int i) {
-        if (i <= 0) {
-            throw new RuntimeException("value of i must > 0");
-        }
-        return randomizedSelect(A, 0, A.length-1, i);
-    }
-
-    /**
-     *
-     * @param A     集合
-     * @param low
-     * @param high
-     * @param i     第i个顺序统计量
-     * @param <T>
-     * @return
-     */
-    private static <T extends Comparable> T randomizedSelect(T[] A, int low, int high, int i) {
-        if (low == high) {
-            return A[low];
-        }
-        int q = randomizedPartition(A, low, high);
-        int k = q - low + 1;
-        if (i == k) {
-            return A[q];
-        } else if (i < k) {
-            return randomizedSelect(A, low, q-1, i);
-        } else {
-            return randomizedSelect(A, q+1, high, i-k);
-        }
     }
 
 
@@ -119,7 +82,7 @@ public class OrderStatic {
      * @param <T>
      * @return
      */
-    public static <T extends Comparable> int randomizedPartition(T[] A, int low, int high) {
+    private static <T extends Comparable> int randomizedPartition(T[] A, int low, int high) {
         T key = A[low];
         while (low < high) {
             while (low < high && TemplateUtil.compare(A[high], key) >= 0) {

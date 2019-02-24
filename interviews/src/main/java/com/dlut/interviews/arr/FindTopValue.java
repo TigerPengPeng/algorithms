@@ -4,6 +4,8 @@ package com.dlut.interviews.arr;
 
 /**
  * 一个数组是这样的规律（递增然后递减）： 3, 5, 6, 8, 44, 43, 32, 3。用时间复杂度最低的方法找出最大值
+ * 利用二分查找法，找到一个数满足条件：这个数左边的值比它小，右边的值也比它小
+ * 时间复杂度 O(logN)
  *
  */
 public class FindTopValue {
