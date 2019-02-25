@@ -14,8 +14,8 @@ public class FindTopValue {
 //        int arr[] = new int[] {3, 5, 6, 8, 44, 43, 32, 23};
         int arr[] = new int[] {3, 5, 6, 8, 44, 63, 72, 83};
 
-        int maxValue = findTopValue(arr);
-        System.out.println(maxValue);
+        int maxValueIndex = findTopValue(arr);
+        System.out.println(arr[maxValueIndex]);
 
     }
 
@@ -26,30 +26,34 @@ public class FindTopValue {
         }
 
         if (arr.length == 1) {
-            return arr[0];
+            return 0;
         }
 
         int beginIndex = 0;
         int endIndex = arr.length - 1;
-        int middleIndex = calMiddle(beginIndex, endIndex);
 
-        int compareResult;
-        while ((compareResult = getCompareResult(arr, middleIndex, beginIndex, endIndex)) != 0) {
+        while (beginIndex <= endIndex) {
+            int middleIndex = calMiddle(beginIndex, endIndex);
+            int compareResult = getCompareResult(arr, middleIndex);
 
-            // 计算出下一轮要计算的 [beginIndex, endIndex] 和 middle
+            // 计算出下一轮要计算的 [beginIndex, endIndex]
             if (compareResult == 1) {
                 beginIndex = middleIndex + 1;
-                middleIndex = calMiddle(beginIndex, endIndex);
 
             } else if (compareResult == 2) {
                 endIndex = middleIndex - 1;
-                middleIndex = calMiddle(beginIndex, endIndex);
+
+            } else if (compareResult == 0) {
+                return beginIndex;
 
             } else {
                 throw new IllegalStateException("unexpected condition");
             }
         }
-        return arr[middleIndex];
+
+        // 如果没有找到符合条件的最大值，则返回最后beginIndex停留的index
+        return beginIndex;
+
     }
 
     private static int calMiddle(int beginIndex, int endIndex) {
@@ -65,11 +69,7 @@ public class FindTopValue {
      *          1:  target value is on the right side
      *          2:  target value is on the left side
      */
-    private static int getCompareResult(int[] arr, int index, int beginIndex, int endIndex) {
-        if (beginIndex == endIndex) {
-            return 0;
-        }
-
+    private static int getCompareResult(int[] arr, int index) {
         if (index > 0 && index < arr.length - 1) {
 
             if (arr[index] > arr[index - 1] && arr[index] > arr[index + 1]) {
