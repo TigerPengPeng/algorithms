@@ -11,9 +11,8 @@
 
     <modules>
         <module>kdtree</module>
-        <module>lru</module>
         <module>sorts</module>
-        <module>interviews</module>
+        <module>leetcode</module>
         <module>thinking-in-java</module>
     </modules>
 
